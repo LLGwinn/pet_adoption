@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Pet Details{% endblock %} 
+
+{% block content %} 
+<div class='container'>
+        <div class='row'>
+            <div class='col-md-2'>
+                {% if pet.photo_url %}
+                <img src='{{pet.photo_url}}' alt="pet photo" class='img-fluid mt-3'>
+                {% else %} 
+                NO PHOTO UPLOADED
+                {% endif %} 
+            </div>
+            <div class='col-auto'>
+                <h1 class='display-3'>{{pet.name}}</h1>
+                <hr>
+                <p class='fs-5'>Species: {{pet.species}}
+                            &emsp; &emsp; Age: {% if pet.age %}{{pet.age}}{% else %} unknown{% endif %}
+                </p></div>
+                <div class='fs-5 fst-italic fw-light'>{{pet.notes}}</div>
+            
+
+            <form id="edit-pet-form" method="POST">
+                {{ form.hidden_tag() }}
+                <div class='col-md-6 mt-5'>
+                    <p>
+                        {{ form.photo_url.label(class='form-label') }}
+                        {{ form.photo_url(class='form-control') }}
+                    </p>
+                    <p>
+                        {{ form.notes.label(class='form-label') }}
+                        {{ form.notes(class='form-control') }}
+                    </p>
+                    <p>
+                        {{ form.available.label(class='form-label') }}
+                        {{ form.available }}
+                    </p>
+                    <button class='btn btn-primary' type='submit'>Update information</button>
+                    <a href="/" class='btn btn-outline-primary'>Home</a>
+                </div>        
+            </form>
+        </div>
+</div>
+
+
+{% endblock %} 
+

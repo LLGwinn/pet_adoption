@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Pet Adoption Home{% endblock %}
+
+{% block content %}
+<div class='container'>>
+    <h1 class='display-2 col-md-8'>All Pets</h1>
+    <a href='/add' class='btn btn-info'>Add a pet</a>
+
+    <div class='row'>
+        {% for pet in pets %}
+        <div class='col-md-4 mt-5'>
+            {% if pet.photo_url %}
+            <img src='{{pet.photo_url}}'  class='img-thumbnail' alt='pet photo'>
+            {% else %}
+            <p>No photo available</p>
+            {% endif %}
+            <a class='text-decoration-none' href='/{{pet.id}}'>{{pet.name}} </a>
+            {% if pet.available %}<b>is available!</b>{% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
